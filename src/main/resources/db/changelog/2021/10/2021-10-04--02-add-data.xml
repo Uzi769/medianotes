@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="Uzi" id="04102021-10">
+        <insert tableName="medical_staff">
+            <column name="name" value="Иван Иванов"/>
+            <column name="cabinet" value="1"/>
+            <column name="direction_id" value="1"/>
+        </insert>
+        <insert tableName="medical_staff">
+            <column name="name" value="Петр Петров"/>
+            <column name="cabinet" value="2"/>
+            <column name="direction_id" value="2"/>
+        </insert>
+        <insert tableName="medical_staff">
+            <column name="name" value="Яков Андреев"/>
+            <column name="cabinet" value="3"/>
+            <column name="direction_id" value="3"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Uzi" id="04102021-11">
+        <insert tableName="visit">
+            <column name="medical_staff" value="1"/>
+            <column name="patient" value="1"/>
+            <column name="date_visit" value="20211030"/>
+            <column name="description" value="Насморк,больное горло"/>
+            <column name="medical_staff_id" value="1"/>
+            <column name="patient_id" value="1"/>
+        </insert>
+        <insert tableName="visit">
+            <column name="medical_staff" value="2"/>
+            <column name="patient" value="2"/>
+            <column name="date_visit" value="20211030"/>
+            <column name="description" value="Болит живот"/>
+            <column name="medical_staff_id" value="2"/>
+            <column name="patient_id" value="2"/>
+        </insert>
+        <insert tableName="visit">
+            <column name="medical_staff" value="3"/>
+            <column name="patient" value="3"/>
+            <column name="date_visit" value="20210930"/>
+            <column name="description" value="Болит левый глаз"/>
+            <column name="medical_staff_id" value="3"/>
+            <column name="patient_id" value="3"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Uzi" id="04102021-12">
+        <insert tableName="patient">
+            <column name="name" value="Василий Наумов"/>
+            <column name="address" value="Гончарова 30"/>
+            <column name="age" value="20"/>
+            <column name="num_polis" value="773022"/>
+            <column name="num_phone" value="79991999848"/>
+        </insert>
+        <insert tableName="patient">
+            <column name="name" value="Артур Пирожков"/>
+            <column name="address" value="Минаева 30"/>
+            <column name="age" value="22"/>
+            <column name="num_polis" value="773023"/>
+            <column name="num_phone" value="79991999849"/>
+        </insert>
+        <insert tableName="patient">
+            <column name="name" value="Геннадий Большов"/>
+            <column name="address" value="Кирова 30"/>
+            <column name="age" value="44"/>
+            <column name="num_polis" value="773024"/>
+            <column name="num_phone" value="79991999850"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Uzi" id="04102021-14">
+        <insert tableName="direction">
+            <column name="name" value="Терапев"/>
+        </insert>
+        <insert tableName="direction">
+            <column name="name" value="Терапевт"/>
+        </insert>
+        <insert tableName="direction">
+            <column name="name" value="Окулист"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="04102021-15" author="Uzi">
+        <insert tableName="medical_patient">
+            <column name="medical_id" value="1"/>
+            <column name="patient_id" value="1"/>
+        </insert>
+        <insert tableName="medical_patient">
+            <column name="medical_id" value="2"/>
+            <column name="patient_id" value="2"/>
+        </insert>
+        <insert tableName="medical_patient">
+            <column name="medical_id" value="3"/>
+            <column name="patient_id" value="3"/>
+        </insert>
+    </changeSet>
+    <changeSet id="28102021-3" author="Uzi">
+        <insert tableName="role">
+            <column name="code" value="ADMIN"/>
+        </insert>
+        <insert tableName="role">
+            <column name="code" value="USER"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="28102021-6" author="Uzi">
+        <insert tableName="users">
+            <column name="name" value="ivan"/>
+            <column name="password" value="123"/>
+        </insert>
+        <insert tableName="users">
+            <column name="name" value="ivan1"/>
+            <column name="password" value="1234"/>
+        </insert>
+
+    </changeSet>
+
+    <changeSet id="28102021-5" author="Uzi">
+        <insert tableName="user_roles">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" value="2"/>
+            <column name="role_id" value="2"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

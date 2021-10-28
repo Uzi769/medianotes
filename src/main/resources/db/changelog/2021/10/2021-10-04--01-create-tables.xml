@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="04102021-1" author="Uzi">
+        <createTable tableName="medical_staff">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="medical_staff_pkey"/>
+            </column>
+            <column name="name" type="varchar2(255)"/>
+            <column name="cabinet" type="bigint"/>
+            <column name="direction_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="04102021-2" author="Uzi">
+        <createTable tableName="visit">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="visit_pkey"/>
+            </column>
+            <column name="medical_staff" type="bigint"/>
+            <column name="patient" type="bigint"/>
+            <column name="date_visit" type="date"/>
+            <column name="description" type="varchar2(255)"/>
+            <column name="medical_staff_id" type="bigint"/>
+            <column name="patient_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="04102021-3" author="Uzi">
+        <createTable tableName="patient">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="patient_pkey"/>
+            </column>
+            <column name="name" type="varchar2(255)"/>
+            <column name="address" type="varchar2(255)"/>
+            <column name="age" type="int"/>
+            <column name="num_polis" type="varchar2(255)"/>
+            <column name="num_phone" type="varchar2(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="04102021-5" author="Uzi">
+        <createTable tableName="direction">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="direction_pkey"/>
+            </column>
+            <column name="name" type="varchar2(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="04102021-8" author="Uzi">
+        <createTable tableName="medical_patient">
+            <column name="medical_id" type="bigint"/>
+            <column name="patient_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="medical_patient" baseColumnNames="medical_id"
+                                 constraintName="medical_patient_medical_id"
+                                 referencedTableName="medical_staff" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="medical_patient" baseColumnNames="patient_id"
+                                 constraintName="medical_patient_patient_id"
+                                 referencedTableName="patient" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="28102021-1" author="Uzi">
+        <createTable tableName="event">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="event_pkey"/>
+            </column>
+            <column name="description" type="varchar2(255)"/>
+            <column name="date" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="28102021-2" author="Uzi">
+        <createTable tableName="role">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="role_pkey"/>
+            </column>
+            <column name="code" type="varchar2(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="28102021-3" author="Uzi">
+        <createTable tableName="users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_pkey"/>
+            </column>
+            <column name="name" type="varchar2(255)"/>
+            <column name="password" type="varchar2(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="28102021-4" author="Uzi">
+        <createTable tableName="user_roles">
+            <column name="user_id" type="bigint"/>
+            <column name="role_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="user_roles" baseColumnNames="user_id"
+                                 constraintName="user_roles_user_id"
+                                 referencedTableName="users" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="user_roles" baseColumnNames="role_id"
+                                 constraintName="user_roles_role_id"
+                                 referencedTableName="role" referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
